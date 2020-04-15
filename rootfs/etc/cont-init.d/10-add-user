@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bash
+# Script adapted from linuxserver.io
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+groupmod -o -g "$PGID" dogen
+usermod -o -u "$PUID" dogen
+
+echo "
+-------------------------------------
+GID/UID
+-------------------------------------'
+
+User uid:    $(id -u dogen)
+User gid:    $(id -g dogen)
+-------------------------------------
+"
+chown dogen:dogen /app
+chown dogen:dogen /config
+chown dogen:dogen /defaults

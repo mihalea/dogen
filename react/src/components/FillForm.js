@@ -39,9 +39,7 @@ class FillForm extends Component {
         }
 
         let fileName = `${formData.name}_${dateformat(new Date(), "dd-mm")}.pdf`;
-
-        let hostname = process.env.REACT_APP_EXPRESS || "localhost:3000";
-        alert(process.env.REACT_APP_EXPRESS);
+        let hostname = process.env.REACT_APP_EXPRESS_HOST || "localhost:3000";
 
         axios.request({
             url: `http://${hostname}/api/document/`,

@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+su dogen
+cd /app/express && yarn start start
