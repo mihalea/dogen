@@ -31,7 +31,6 @@ class FillForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log("download");
 
         let formData = {
             location: this.state.location,
@@ -41,8 +40,11 @@ class FillForm extends Component {
 
         let fileName = `${formData.name}_${dateformat(new Date(), "dd-mm")}.pdf`;
 
+        let hostname = process.env.REACT_APP_EXPRESS || "localhost:3000";
+        alert(process.env.REACT_APP_EXPRESS);
+
         axios.request({
-            url: "http://localhost:3000/api/document/",
+            url: `http://${hostname}/api/document/`,
             method: "POST",
             responseType: 'blob', //important
             data: formData
@@ -96,7 +98,7 @@ class FillForm extends Component {
                     <h2 className="text-center">Please, COVID!</h2>
                 </div>
 
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit.bind(this)}>
                     <Form.Group controlId="name">
                         <Form.Label>Nume</Form.Label>
                         <Form.Control as="select" value={this.state.name} onChange={this.handleTextChange.bind(this)}>
